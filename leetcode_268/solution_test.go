@@ -1,4 +1,4 @@
-package leetcode_169
+package leetcode_268
 
 import (
 	"bufio"
@@ -39,19 +39,7 @@ func readTestCase(filename string) ([]int, int, error) {
 	return nums, expected, nil
 }
 
-func testMajorityElement(t *testing.T, expected int, nums []int, testCaseName string) {
-	fmt.Printf("Running test case: %s\n", testCaseName)
-	fmt.Printf("Input: %v, Expected: %d\n", nums, expected)
-
-	result := majorityElementRequireO1Space(nums)
-	if result != expected {
-		t.Errorf("FAILED: %s - Expected %d, got %d\n", testCaseName, expected, result)
-	} else {
-		fmt.Printf("PASSED: %s\n", testCaseName)
-	}
-}
-
-func TestMajorityElement(t *testing.T) {
+func TestSolution(t *testing.T) {
 	// Directory containing the test case files.
 	dir := "./testcases"
 	files, err := os.ReadDir(dir)
@@ -71,7 +59,11 @@ func TestMajorityElement(t *testing.T) {
 			continue
 		}
 
-		// Run the test and log the result
-		testMajorityElement(t, expected, nums, file.Name())
+		result := missingNumber(nums)
+		if result != expected {
+			t.Errorf("FAILED: %s - Expected %d, got %d\n", file.Name(), expected, result)
+		} else {
+			fmt.Printf("PASSED: %s\n", file.Name())
+		}
 	}
 }
